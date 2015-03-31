@@ -244,7 +244,7 @@ function txwt_merge_atts($defaults, $settings) {
     return $settings;
 }
 
-if (!function_exists('format_code_lang')) {
+if (!function_exists('format_code_lang') && !is_multisite()) {
 
     /**
      * Returns the language for a language code.

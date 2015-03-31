@@ -3,7 +3,7 @@ Contributors: brooksX
 Tags: translation, transifex live, transifex, localization, internationalization
 Requires at least: 3.1
 Tested up to: 4.1.1
-Stable tag: 0.1
+Stable tag: 0.2
 License: GPLv2 or later
 
 Translate WordPress sites directly on the page using Transifex Live localization tools.
@@ -38,5 +38,7 @@ Languages so the language switcher can be accurately generated.
 Yes, it is, as well as with the latest PHP. 
 
 == Changelog ==
-
+=0.1=
 * Initial commit
+=o.2=
+* Fixed multisite bug that would lead to dumplicate functions that are not avilable in single site mode

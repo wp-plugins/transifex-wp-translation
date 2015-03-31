@@ -2,9 +2,10 @@
 /**
  * Plugin Name: Transifex WP Translation
  * Plugin URI: http://zanto.org/
+ * Description: Translate WordPress sites directly on the page using Transifex Live localization tools.
  * Author: Mucunguzi Ayebare Brooks
  * Author URI: http://zanto.org/
- * Version: 0.1
+ * Version: 0.2
  * Text Domain: txwt
  * License: GPL2
 
