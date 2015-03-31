@@ -137,7 +137,7 @@ class TXWT_Plugin_Settings {
         return array(
             'general' => $general,
             'translation' => $translation,
-            'langs' => array(strtolower(substr($locale, 0, 2)) => array('name' => format_code_lang($locale), 'code' => strtolower(substr($locale, 0, 2)), 'source' => true)),
+            'langs' => array(strtolower(substr($locale, 0, 2)) => array('name' => txwt_format_code_lang($locale), 'code' => strtolower(substr($locale, 0, 2)), 'source' => true)),
             'lang_switcher' => $lang_switcher,
             'db-version' => TXWT_VERSION,
         );
