@@ -3,7 +3,7 @@ Contributors: brooksX
 Tags: translation, transifex live, transifex, localization, internationalization
 Requires at least: 3.1
 Tested up to: 4.1.1
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv2 or later
 
 Translate WordPress sites directly on the page using Transifex Live localization tools.
@@ -25,6 +25,10 @@ This is one of the many multilingual WordPress plugins provided by <a title "Wor
 * Use custom flags
 * SEO for your transifex live multilingual content is fully catered for.
 
+
+= Support =
+* Get fast support here <a href="http://zanto.org/support"> Transifex WordpPress Translation support</a>
+
 == Installation ==
 
 Upload the plugin to your blog and activate it. Go to WP-Admin->Transifex->General (Tab) add the Transifex live key you
@@ -38,7 +42,9 @@ Languages so the language switcher can be accurately generated.
 Yes, it is, as well as with the latest PHP. 
 
 == Changelog ==
+=0.3=
+* Fixed a couple of documentation links
+=0.2=
+* Fixed multisite bug that would lead to dumplicate functions that are not avilable in single site mode
 =0.1=
 * Initial commit
-=o.2=
-* Fixed multisite bug that would lead to dumplicate functions that are not avilable in single site mode

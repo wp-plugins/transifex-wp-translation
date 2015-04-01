@@ -16,12 +16,14 @@ function txwt_admin($) {
                 txwt.PageStart();
                 txwt.EventHandlers(); 
             }else if(adminpage == 'toplevel_page_txwt-plugin'){
+				txwt.TxInit();
                 txwt.EventHandlers(); 
             }
      
         },
 		
         PageStart: function(){	
+				
             // Color picker
             $('.colorpick').wpColorPicker( {
                 change: txwt.wpColorChange,
@@ -63,6 +65,15 @@ function txwt_admin($) {
 		
 
         },
+		
+		TxInit: function(){
+			//Initialize transifex
+            
+                window.liveSettings = {
+                    api_key: TXWT.api_key
+                };
+            
+		},
 
         EventHandlers: function (event) {
             $('.wpurl_switcher').click(txwt.showWPstgs);
@@ -138,49 +149,50 @@ function txwt_admin($) {
             return false;
         },
         fetchLanguages: function(){
+            if (typeof Transifex == 'undefined'){
+                alert('Unable to connect to server');			
+                return false;
+            }  
+			
             if(window.liveSettings.api_key != document.getElementById('tx_api_key').value){
                 alert(TXWT.save_key);
                 return false;
-            }else if(window.liveSettings.api_key == ''){
+            }
+			
+            if(window.liveSettings.api_key == ''){
                 alert(TXWT.empty_key);
                 return false;
             }
-				
 			
-            if (typeof Transifex != 'undefined'){            
-                var langs = Transifex.live.getAllLanguages();
-                if (typeof langs != 'undefined'){   
-                    var data={
-                        action:'txwt_store_langs',
-                        langs:langs,
-                        _wpnonce:$('#txwt_fetch_langs').val()
-                    };
-                    var spinner =  $(this).next('.spinner');
-                    $.ajax({
-                        url: ajaxurl,
-                        type: 'post',
-                        data: data,
-                        cache: false,
-                        beforeSend: function () {
-                            spinner.show();
-                        },
-                        success: function (data) {
-                            spinner.hide();
-							if(data != 'err_1' || data != 'err_2'){
-							    $('#langs-fetched-notice .languages').html(data);
-                                $('#langs-fetched-notice').show();
-							}else{
-								$('#integrity-err').show();
-							}
+            var langs = Transifex.live.getAllLanguages();
+            if (typeof langs != 'undefined'){   
+                var data={
+                    action:'txwt_store_langs',
+                    langs:langs,
+                    _wpnonce:$('#txwt_fetch_langs').val()
+                };
+                var spinner =  $(this).next('.spinner');
+                $.ajax({
+                    url: ajaxurl,
+                    type: 'post',
+                    data: data,
+                    cache: false,
+                    beforeSend: function () {
+                        spinner.show();
+                    },
+                    success: function (data) {
+                        spinner.hide();
+                        if(data != 'err_1' || data != 'err_2'){
+                            $('#langs-fetched-notice .languages').html(data);
+                            $('#langs-fetched-notice').show();
+                        }else{
+                            $('#integrity-err').show();
                         }
-                    });	
-                }else{
-                    $('#empty-langs-err').show();
-                }
+                    }
+                });	
             }else{
-                alert('Unable to connect to server');			
-                return false;
-            }						
+                $('#empty-langs-err').show();
+            }
 			
         },
         customCustomizer: function(){

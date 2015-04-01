@@ -25,12 +25,12 @@ $active = 'nav-tab-active';
 	
 	<div class="alert critical" id="empty-langs-err">
 	<h3 class="key-status failed"><?php esc_html_e("We are unable to fetch your languages.", 'txwt'); ?></h3>
-	<p class="description"><?php printf( __('Make sure your API Key is correct and your firewall ins\'t blocking us refer to <a href="%s" target="_blank">our guide about API Keys</a>.', 'txwt'), 'http://#.com/'); ?></p>
+	<p class="description"><?php printf( __('Make sure your API Key is correct and your translations have been published to production <a href="%s" target="_blank">Please see Transifex Live interface guide</a>.', 'txwt'), 'http://docs.transifex.com/developer/live/interface'); ?></p>
     </div>
 	
 	<div class="alert critical" id="integrity-err">
 	<h3 class="key-status failed"><?php esc_html_e("We are unable to fetch your languages.", 'txwt'); ?></h3>
-	<p class="description"><?php printf( __('There seems to be a problem with the integrity of the returned data <a href="%s" target="_blank">please contact support about this</a>.', 'txwt'), 'http://#.com/'); ?></p>
+	<p class="description"><?php printf( __('There seems to be a problem with the integrity of the returned data <a href="%s" target="_blank">please contact support about this</a>.', 'txwt'), 'http://zanto.org/support'); ?></p>
     </div>
 	
 	<div class="alert success" id="langs-fetched-notice">
@@ -75,10 +75,6 @@ $active = 'nav-tab-active';
 		// postboxes setup
 		postboxes.add_postbox_toggles('toplevel_page_txwt-plugin');
 	});
-	
-	 window.liveSettings = {
-                    api_key: document.getElementById('tx_api_key').value
-                };
 	//]]>
 </script>
 	</div>

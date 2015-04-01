@@ -53,12 +53,12 @@ class TXWT_Base {
 
     public function init() {
         $this->register_settings();
-        wp_register_script('transifex.js', '//cdn.transifex.com/live.js', array(), '1.0', true); //used both in the back and front end. enqueued only where its needed.
+        wp_register_script('transifex.js', '//cdn.transifex.com/live.js', array(), '1.0', false); //used both in the back and front end. enqueued only where its needed.
 
         if (!is_admin()) {
             $this->activate_lang_switcher();
 
-            add_action('wp_print_footer_scripts', array($this, 'transifex_live_script'), 50);
+            add_action('wp_head', array($this, 'transifex_live_script'), 50);
             add_action('wp_enqueue_scripts', array($this, 'txwt_front_JS'));
             add_action('wp_enqueue_scripts', array($this, 'txwt_add_CSS'));
         }
@@ -129,7 +129,7 @@ class TXWT_Base {
             'ignore_class' => $this->settings['translation']['ignore_class']
         );
 
-        wp_register_script('txwt_front.js', TXWT_URL . '/js/transifex.js', array('jquery', 'transifex.js'), '1.0', true);
+        wp_register_script('txwt_front.js', TXWT_URL . '/js/transifex.js', array('jquery', 'transifex.js'), '1.0', false);
         wp_enqueue_script('txwt_front.js');
         wp_localize_script('txwt_front.js', 'TXWT', $script_params);
     }
@@ -150,10 +150,9 @@ class TXWT_Base {
                 'empty_key' => __('Please provide an API Key before you can fetch languages', 'txwt'),
                 'save_key' => __('Please Save the API Key / Page settings before you can fetch languages', 'txwt')
             );
-            wp_enqueue_script('jquery');
-            wp_register_script('txwt-admin', TXWT_URL . '/js/admin-stgs.js', array('jquery-ui-sortable', 'wp-color-picker', 'transifex.js'), '1.0', true);
-            wp_enqueue_script('txwt-admin');
-            wp_localize_script('txwt-admin', 'TXWT', $script_params);
+
+            wp_enqueue_script('txwt-admin', TXWT_URL . '/js/admin-stgs.js', array('jquery-ui-sortable', 'wp-color-picker', 'transifex.js'), '1.0', false);
+			wp_localize_script('transifex.js', 'TXWT', $script_params);
         }
     }
 

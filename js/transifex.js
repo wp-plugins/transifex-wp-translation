@@ -28,7 +28,7 @@ function txwt_main($) {
 		
         onFetchLanguages: function(languages){
             //get the source language 
-               var sourceLang=  Transifex.live.getSourceLanguage().code;
+            var sourceLang=  Transifex.live.getSourceLanguage().code;
                
             //empty our language list
             $('#post_langs_list').empty();
@@ -65,13 +65,13 @@ function txwt_main($) {
         },
         
         OnError: function(err) {
-
+         alert(err);
         }
        
 
     }; // end txwt
   
-        Transifex.live.onReady(txwt.init);
+    Transifex.live.onReady(txwt.init);
    
 } // end txwt_main()
 
