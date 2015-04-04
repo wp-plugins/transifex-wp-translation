@@ -16,7 +16,7 @@
 <?php endif; ?>
 
 <?php if ( 'txwt_autocollect' == $field['label_for'] ) : ?>
-	<label><input type="checkbox" id="tx_autocollect" name="<?php esc_attr_e( 'txwt_tx_stgs[general][autocollect]' ); ?>" <?php checked( 1, $settings['general']['autocollect'], 1 ); ?>/> Detect Dynamic Strings</label><br/>
+	<label><input type="checkbox" id="tx_autocollect" name="<?php esc_attr_e( 'txwt_tx_stgs[general][autocollect]' ); ?>" <?php checked( 1, $settings['general']['autocollect'], 1 ); ?>/>Auto Collect Strings</label><br/>
     <p class="desc label">Automatically identify new strings as the users browse the website and send them back to Transifex.</p>
 <?php endif; ?>
 

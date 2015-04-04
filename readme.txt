@@ -3,7 +3,7 @@ Contributors: brooksX
 Tags: translation, transifex live, transifex, localization, internationalization
 Requires at least: 3.1
 Tested up to: 4.1.1
-Stable tag: 0.3
+Stable tag: 0.3.1
 License: GPLv2 or later
 
 Translate WordPress sites directly on the page using Transifex Live localization tools.
