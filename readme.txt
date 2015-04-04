@@ -42,6 +42,8 @@ Languages so the language switcher can be accurately generated.
 Yes, it is, as well as with the latest PHP. 
 
 == Changelog ==
+=0.3.1=
+* Added Transifex icon, and a few bug fixes
 =0.3=
 * Fixed a couple of documentation links
 =0.2=
