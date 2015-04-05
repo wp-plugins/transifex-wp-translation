@@ -5,7 +5,7 @@
  * Description: Translate WordPress sites directly on the page using Transifex Live localization tools.
  * Author: Mucunguzi Ayebare Brooks
  * Author URI: http://zanto.org/
- * Version: 0.3.1
+ * Version: 0.3.2
  * Text Domain: txwt
  * License: GPL2
 
@@ -29,7 +29,7 @@
  * 
  */
 
-define( 'TXWT_VERSION', '0.3.1' );
+define( 'TXWT_VERSION', '0.3.2' );
 define( 'TXWT_PATH', dirname( __FILE__ ) );
 define ('TXT_VIEWS', TXWT_PATH.'/views/');
 define( 'TXWT_PATH_INCLUDES', dirname( __FILE__ ) . '/inc' );

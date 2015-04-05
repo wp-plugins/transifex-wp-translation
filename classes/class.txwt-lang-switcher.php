@@ -259,11 +259,11 @@ CSS;
 		//$args['skip_missing']
 		public function get_current_ls( $args=array( ) ) {
 			global $wp;
-			$source_lang = $GLOBALS[ 'TXWT' ]->source_lang;
 			$defaults = array( 'skip_missing' => 0 );
 			$args = wp_parse_args( $args, $defaults );
 			$current_url = home_url();
 			$txwt_ls_array = array( );
+			
 			if ( !$wp->did_permalink ) {
 				// There could be plugin specific params on the URL, so we need the whole query string
 				if ( !empty( $_SERVER[ 'QUERY_STRING' ] ) ) {
@@ -276,7 +276,7 @@ CSS;
 			$languages = txwt_order_langs( $this->ls_settings[ 'language_order' ], txwt_get_languages() );
 
 			foreach ( $languages as $lang_code => $lang_details ) {
-				$url = ($source_lang == $lang_code) ? $current_url : $this->add_url_lang( $current_url, $lang_code );
+				$url =  $this->add_url_lang( $current_url, $lang_code );
 				$txwt_ls_array[ $lang_code ] = array( 'name' => $lang_details[ 'name' ], 'url' => $url );
 			}
 
@@ -286,17 +286,26 @@ CSS;
 		// Adds the language code to the url.
 		function add_url_lang( $url, $code ) {
 			global $blog_id;
-			$url_format = $this->ls_settings[ 'lang_url_format' ];
-			$abshome = preg_replace( '@\?lang=' . $code . '@i', '', home_url() );
+			$source_lang = $GLOBALS[ 'TXWT' ]->source_lang;
+			$active_lang = $GLOBALS[ 'TXWT' ]->active_lang;
+			$url_format = $this->ls_settings[ 'lang_url_format' ];						
 
 			switch ( $url_format ) {
 				case 0:
+			        $url = preg_replace('#'.$active_lang.'[/]{0,1}#','', $url);
+                    $abshome =  home_url();	
+					
 					if ( 0 === strpos( $url, 'https://' ) ) {
 						$abshome = preg_replace( '#^http://#', 'https://', $abshome );
-					}
-					if ( $abshome == $url )
+					}  
+					
+					if ( $abshome == $url ){
 						$url .= '/';
-					if ( 0 !== strpos( $url, $abshome . '/' . $code . '/' ) ) {
+					}
+					
+					if($source_lang == $code){
+						$url = str_replace( $abshome, $abshome, $url );
+					}elseif ( 0 !== strpos( $url, $abshome . '/' . $code . '/' ) ) {
 						// only replace if it is there already
 						$url = str_replace( $abshome, $abshome . '/' . $code, $url );
 					}
@@ -323,14 +332,21 @@ CSS;
 							$url_glue = '&amp;';
 						}
 					}
-					$url .= $url_glue . 'lang=' . $code;
+					
+					if($source_lang !== $code){
+					    $url .= $url_glue . 'lang=' . $code;						
+					}
 					break;
 
 				case '2':
 					$domain = preg_replace( '|https?://|', '', get_option( 'siteurl' ) );
-					if ( $slash = strpos( $domain, '/' ) )
+					if ( $slash = strpos( $domain, '/' ) ){
 						$domain = substr( $domain, 0, $slash );
-					$url = str_replace( $domain, $code . '.' . $domain, $url );
+					}
+					if($source_lang !== $code){
+					     $url = str_replace( $domain, $code . '.' . $domain, $url );						
+					}
+					
 					break;
 
 				default:
